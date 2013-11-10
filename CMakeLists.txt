@@ -21,6 +21,10 @@ add_definitions("-Doverride=")
 add_definitions("-DCMAKE_VERBOSE_MAKEFILE=ON")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
 
+
+
+
+
 ##define output
 set( BinOut ${CMAKE_SOURCE_DIR}/${CMAKE_PROJECT_NAME}out/${} )
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BinOut} )
