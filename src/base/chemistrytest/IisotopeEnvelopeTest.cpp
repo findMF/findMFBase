@@ -4,8 +4,6 @@
 // for full text refer to files: LICENSE, AUTHORS and COPYRIGHT
 
 #include "base/chemistry/iisotopeenvelope.h"
-
-
 #include <gtest/gtest.h>
 
 
@@ -15,7 +13,7 @@ namespace ralab{
   {
     IsotopeEnvelope(){}
     //just a dummy implementation
-    ralab::base::chemistry::MassAbundance isotopeEnvelope(double mass) const override
+    ralab::base::chemistry::MassAbundance isotopeEnvelope(double mass) const //override
     {
       ralab::base::chemistry::MassAbundance mab;
       mab.push_back(35.22);
