@@ -23,10 +23,9 @@ namespace ralab
     template<class ValIter_T, class WeightIter_T>
     typename std::iterator_traits<ValIter_T>::value_type meanW
     (
-        ValIter_T valuesbeg, //!<[in] values
-        ValIter_T valuesend, //
-        WeightIter_T weigthsbeg//!<[in] weigths
-        //WeightIter_T weightsend
+        ValIter_T valuesbeg, //!< [in] values
+        ValIter_T valuesend, //!< end iterator
+        WeightIter_T weigthsbeg//!< [in] weigths
         )
     {
       typedef typename std::iterator_traits<ValIter_T>::value_type TReal;
@@ -41,15 +40,14 @@ namespace ralab
       return(dWeightedSum/dSumOfWeights);
     }
 
-    /** Weighted Variance \f[ 1/\sum{w_i} \cdot \sum{ w_i ( x_i - \mu )^2 } \f]
-      */
+    /// Weighted Variance \f[ 1/\sum{w_i} \cdot \sum{ w_i ( x_i - \mu )^2 } \f]
     template<class ValIter_T, class WeightIter_T>
     typename std::iterator_traits<ValIter_T>::value_type
     varW
     (
-        ValIter_T valuesbeg, //!<[in] values
-        ValIter_T valuesend,
-        WeightIter_T weightsbeg,
+        ValIter_T valuesbeg, //!< [in] values
+        ValIter_T valuesend, //!< end iterator
+        WeightIter_T weightsbeg, //!< [in] weight
         typename std::iterator_traits<ValIter_T>::value_type dAverageMass //!<[in] precomputed weighted average
         )
     {
@@ -83,9 +81,9 @@ namespace ralab
     typename std::iterator_traits<ValIter_T>::value_type
     varW
     (
-        ValIter_T valuesbeg , //!<[in] Values
-        ValIter_T valuesend,
-        WeightIter_T weightsbeg //!<[in] Weight
+        ValIter_T valuesbeg , //!< [in] Values
+        ValIter_T valuesend, //!< end iter
+        WeightIter_T weightsbeg //!< [in] Weight
         )
     {
       typedef typename std::iterator_traits<ValIter_T>::value_type TReal;
@@ -99,9 +97,9 @@ namespace ralab
     typename std::iterator_traits<ValIter_T>::value_type
     sdW
     (
-        ValIter_T valuesbeg, //!<[in] Values
-        ValIter_T valuesend, //!<[in] Weight
-        WeightIter_T weightbeg
+        ValIter_T valuesbeg, //!< [in] Values
+        ValIter_T valuesend, //!< end iter
+        WeightIter_T weightbeg //!< weights
         )
     {
       return(sqrt(varW(valuesbeg , valuesend, weightbeg )));
@@ -112,10 +110,10 @@ namespace ralab
     typename std::iterator_traits<ValIter_T>::value_type
     sdW
     (
-        ValIter_T valuesbeg, //!<[in] values
-        ValIter_T valuesend,
-        WeightIter_T weightsbeg,
-        typename std::iterator_traits<ValIter_T>::value_type dAverageMass //!<[in] precomputed weighted average
+        ValIter_T valuesbeg, //!< [in] values
+        ValIter_T valuesend, //!< end iter
+        WeightIter_T weightsbeg, //!< weights
+        typename std::iterator_traits<ValIter_T>::value_type dAverageMass //!< [in] precomputed weighted average
         )
     {
       return(
@@ -128,11 +126,11 @@ namespace ralab
     typename std::iterator_traits<ValIter_T>::value_type
     skewW
     (
-        ValIter_T valuesbeg, //!<[in] values
-        ValIter_T valuesend,
-        WeightIter_T weightsbeg,
-        typename std::iterator_traits<ValIter_T>::value_type dAverage, //!<[in] mean
-        typename std::iterator_traits<ValIter_T>::value_type dSD//!<[in] sd
+        ValIter_T valuesbeg, //!< [in] values
+        ValIter_T valuesend, //!< end iter
+        WeightIter_T weightsbeg, //!< weights
+        typename std::iterator_traits<ValIter_T>::value_type dAverage, //!< [in] mean
+        typename std::iterator_traits<ValIter_T>::value_type dSD//!< [in] sd
         )
     {
       typedef typename std::iterator_traits<ValIter_T>::value_type TReal;
@@ -155,9 +153,9 @@ namespace ralab
     typename std::iterator_traits<ValIter_T>::value_type
     skewW
     (
-        ValIter_T valuesbeg, //!<[in] values
-        ValIter_T valuesend,
-        WeightIter_T weightsbeg
+        ValIter_T valuesbeg, //!< [in] values
+        ValIter_T valuesend, //!< end iter
+        WeightIter_T weightsbeg //! weightsbeg
         )
     {
       typedef typename std::iterator_traits<ValIter_T>::value_type TReal;
@@ -171,11 +169,11 @@ namespace ralab
     typename std::iterator_traits<ValIter_T>::value_type
     kurtW
     (
-        ValIter_T valuesbeg, //!<[in] values
-        ValIter_T valuesend,
-        WeightIter_T weightsbeg,
-        typename std::iterator_traits<ValIter_T>::value_type dAverage, //!<[in] mean
-        typename std::iterator_traits<ValIter_T>::value_type dSD//!<[in] sd
+        ValIter_T valuesbeg, //!< [in] values
+        ValIter_T valuesend, //!< [in] end itertor
+        WeightIter_T weightsbeg, //!< [in] weights
+        typename std::iterator_traits<ValIter_T>::value_type dAverage, //!< [in] mean
+        typename std::iterator_traits<ValIter_T>::value_type dSD//!< [in] sd
         )
     {
       typedef typename std::iterator_traits<ValIter_T>::value_type TReal;
@@ -199,9 +197,9 @@ namespace ralab
     typename std::iterator_traits<ValIter_T>::value_type
     kurtW
     (
-        ValIter_T valuesbeg, //!<[in] values
-        ValIter_T valuesend,
-        WeightIter_T weightsbeg
+        ValIter_T valuesbeg, //!< [in] values
+        ValIter_T valuesend, //!< [in] end iterator
+        WeightIter_T weightsbeg //!< [in] weights
         )
     {
       typedef typename std::iterator_traits<ValIter_T>::value_type TReal;
@@ -216,9 +214,9 @@ namespace ralab
     typename std::iterator_traits<ValIter_T>::value_type
     varWUnbiased
     (
-        ValIter_T valuesbeg, //!<[in] values
-        ValIter_T valuesend,
-        WeightIter_T weightsbeg
+        ValIter_T valuesbeg, //!< [in] values
+        ValIter_T valuesend, //!< end iter
+        WeightIter_T weightsbeg //!< [in] weights
         )
     {
       typedef typename std::iterator_traits<ValIter_T>::value_type TReal;
@@ -238,26 +236,19 @@ namespace ralab
       return ( var );
     }
 
-    /** Weighted standard deviation unbiased (see GSL documentation)
-
-                        \f[ \sqrt{VarUnbiasedWeight} \f]
-                        */
+    /// Weighted standard deviation unbiased (see GSL documentation)
+   ///  \f[ \sqrt{VarUnbiasedWeight} \f]
     template<class ValIter_T, class WeightIter_T>
     typename std::iterator_traits<ValIter_T>::value_type
     sdWUnbiased
     (
-        ValIter_T valuesbeg, //!<[in] values
-        ValIter_T valuesend,
-        WeightIter_T weightsbeg
+        ValIter_T valuesbeg, //!< [in] values
+        ValIter_T valuesend, //!< [in] end iter
+        WeightIter_T weightsbeg //!< [out] weights begin
         )
     {
       return(sqrt(varWUnbiased( valuesbeg , valuesend, weightsbeg )));
     }
-
-
-
-
-
   }//namespace algo
 }//namespace ralab ends here
 

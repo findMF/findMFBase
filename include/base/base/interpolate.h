@@ -42,13 +42,13 @@ namespace ralab
                 typename OutputIterator>
       void interpolate_linear(
           YInputIterator begY, //!< y values equidistantly spaced. spacing is [0,1,2, .... ,len(y)]
-          YInputIterator endY,
+          YInputIterator endY, //!< end iter
           XInputIterator begX, //!< points to interpolate at
-          XInputIterator endX,
+          XInputIterator endX, //!< end iter
           OutputIterator out, //!< interpolated values, same length as x.
           int start_index = 0, //!< if y values are placed on a grid with start_index != 0
           typename std::iterator_traits<OutputIterator>::value_type epsilon =
-          std::numeric_limits<typename std::iterator_traits<OutputIterator>::value_type>::epsilon()
+          std::numeric_limits<typename std::iterator_traits<OutputIterator>::value_type>::epsilon() //!< epsilon
           )
       {
         typedef typename std::iterator_traits<OutputIterator>::value_type TReal;
@@ -67,9 +67,9 @@ namespace ralab
                 >
       void interpolate_cosine(
           YInputIterator begY, //!< y values equidistantly spaced. spacing is [0,1,2, .... ,len(y)]
-          YInputIterator endY,
-          XInputIterator begX, //!< points to interpolate at
-          XInputIterator endX,
+          YInputIterator endY, //!< end iter
+          XInputIterator begX, //!< points to interpolate at, begin iter
+          XInputIterator endX, //!< end iter
           OutputIterator out, //!< interpolated values, same length as x.
           int start_index = 0 //!< if y values are placed on a grid with start_index != 0
           )
@@ -89,13 +89,13 @@ namespace ralab
                 typename OutputIterator>
       void interpolate_cubic(
           YInputIterator begY, //!< y values equidistantly spaced. spacing is [0,1,2, .... ,len(y)]
-          YInputIterator endY,
+          YInputIterator endY, //!< end iter
           XInputIterator begX, //!< points to interpolate at
-          XInputIterator endX,
+          XInputIterator endX, //!< end iter
           OutputIterator out, //!< interpolated values, same length as x.
           int start_index = 0, //!< if y values are placed on a grid with start_index != 0
           typename std::iterator_traits<OutputIterator>::value_type epsilon =
-          std::numeric_limits<typename std::iterator_traits<OutputIterator>::value_type>::epsilon()
+          std::numeric_limits<typename std::iterator_traits<OutputIterator>::value_type>::epsilon() //!< epsilon
           )
       {
         typedef typename std::iterator_traits<OutputIterator>::value_type TReal;
@@ -106,7 +106,6 @@ namespace ralab
 
       /// Hermite interpolation on equidistantly spaced y's. The y's are located at 0,1,2....,len(y).
       ///  For x's < 0 or x's > len(y) y[0] or y[len(y) -1 ] is used.
-
       template <
           typename YInputIterator,
           typename XInputIterator,
@@ -114,15 +113,15 @@ namespace ralab
           >
       void interpolate_Hermite(
           YInputIterator begY, //!< y values equidistantly spaced. spacing is [0,1,2, .... ,len(y)]
-          YInputIterator endY,
+          YInputIterator endY, //!< end iter
           XInputIterator begX, //!< points to interpolate at
-          XInputIterator endX,
+          XInputIterator endX, //!< end iter
           OutputIterator out, //!< interpolated values, same length as x.
           double tension = 0, //!< 1 is high, 0 normal, -1 is low
           double bias = 0, //!< 0 is even, positive is towards first segment, negative towards the other
           int start_index = 0, //!< if y values are placed on a grid with start_index != 0
           typename std::iterator_traits<OutputIterator>::value_type epsilon =
-          std::numeric_limits<typename std::iterator_traits<OutputIterator>::value_type>::epsilon()
+          std::numeric_limits<typename std::iterator_traits<OutputIterator>::value_type>::epsilon() //!< epsilon
           )
       {
         typedef typename std::iterator_traits<OutputIterator>::value_type TReal;

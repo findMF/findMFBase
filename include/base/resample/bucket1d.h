@@ -15,7 +15,7 @@
 namespace ralab{
   namespace base{
     namespace resample{
-    /*!\given breaks and data compute frequencies in bins*/
+    /// given breaks and data compute frequencies in bins
     struct Bucket1D
     {
     private:
@@ -61,7 +61,6 @@ namespace ralab{
 
     public:
 
-      /*! \Assignment */
       Bucket1D& operator=(const Bucket1D &rhs)
       {
         if (this == &rhs) // protect against invalid self-assignment

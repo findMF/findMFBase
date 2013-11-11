@@ -10,8 +10,6 @@
 #include "base/filter/scanfilter/iscanfilterfunctor.h"
 #include "base/filter/morphology.h"
 
-/*! \file BackgroundSubtract.h Background-subtraction using the top hat method.
-*/
 
 namespace ralab
 {

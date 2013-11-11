@@ -3,7 +3,7 @@
 # Authors   : Witold Wolski
 # for full text refer to files: LICENSE, AUTHORS and COPYRIGHT
 
-FIND_PACKAGE(Gtest)
+FIND_PACKAGE(Gtest REQUIRED)
 if(Gtest_FOUND)
   message(STATUS "Gtest found" ${Gtest_INCLUDE_DIR})
   message(STATUS "Gtest found" ${Gtest_LIBRARY})

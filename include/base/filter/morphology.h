@@ -100,16 +100,15 @@ namespace OpenMS
     Input and output range must be valid, i.e. allocated before.
     InputIterator must be a random access iterator type.
 
-    @param input_begin the begin of the input range
-    @param input_end  the end of the input range
-    @param output_begin the begin of the output range
-
     @exception Exception::IllegalArgument The given method is not one of the values defined in the @em method paramter.
     */
     template <typename InputIterator, typename OutputIterator>
     typename boost::enable_if<boost::is_same<Tvalue , typename std::iterator_traits<InputIterator>::value_type> >::type
-    erosion(InputIterator input_begin, InputIterator input_end, OutputIterator output_begin,
-            uint32_t struct_size_in_datapoints_ )
+    erosion(InputIterator input_begin, //!< [in] rand access iterator
+            InputIterator input_end,//!< [in] rand access iterator
+            OutputIterator output_begin,//!< [out] rand access iterator
+            uint32_t struct_size_in_datapoints_ //!< size of structuring element
+            )
     {
       applyErosion_(struct_size_in_datapoints_, input_begin, input_end, output_begin);
     }

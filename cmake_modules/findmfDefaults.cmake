@@ -3,9 +3,9 @@
 # Authors   : Witold Wolski
 # for full text refer to files: LICENSE, AUTHORS and COPYRIGHT
 
-IF(NOT DEFINED WITH_TEST)
-    SET(WITH_TEST "ON")
+IF(NOT DEFINED ENABLE_TESTING)
+    SET(ENABLE_TESTING "ON")
 ENDIF()
-SET(WITH_TEST ${WITH_TEST}
+SET(ENABLE_TESTING ${ENABLE_TESTING}
     CACHE BOOL "Build with test ?"
     FORCE)

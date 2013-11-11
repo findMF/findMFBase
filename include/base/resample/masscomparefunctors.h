@@ -10,10 +10,6 @@
 #include <stdlib.h>
 #include <cstdio>
 #include <complex>
-/*! \file MassCompareFunctors.h
-Defines function objects which are used by SortedMatcher and UnsortedMatcher.
-
-*/
 namespace ralab
 {
 

@@ -9,18 +9,12 @@
 
 #include <string>
 
-/*! \file Constants.h
-\brief Constants
-
-*/
 
 namespace ralab
 {
   namespace constants
   {
 
-      /* \brief the ratio of the circumference of a circle to its diameter;*/
-      const double PI(3.14159265358979323846264338327950288);
       /*! \brief  the three-letter abbreviations for the English month names; */
       static const char * month_abb[12] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
       /*! \brief the English names for the months of the year; */
@@ -31,7 +25,8 @@ namespace ralab
       /*! \brief the 26 lower-case letters of the Roman alphabet; */
       const char letters[26] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
                                  'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-      /*!*/
+      /* \brief the ratio of the circumference of a circle to its diameter;*/
+      const double PI(3.14159265358979323846264338327950288);
 
   }//end algo
 }//end ralab

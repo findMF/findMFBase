@@ -26,9 +26,7 @@ namespace ralab
         bool problem_; //indicates if not the whole signal was picked.
 
         SimplePicker(TReal epsilon = 1e-3):epsilon_(epsilon),problem_(false){}
-        /*!
-         *returns number of zero crossings found
-         */
+
         template<typename Tit, typename Outit>
         size_t operator()(Tit beg, Tit end ,
                           Outit zerocrossings, //! picked peaks

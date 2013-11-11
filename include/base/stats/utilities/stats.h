@@ -42,7 +42,7 @@ namespace ralab
         TReal mean_;
       };
 
-      /** nth central moment \$[ mu_n = \sum((x_i - mean)^n) \$] */
+      /** nth central moment \$[ mu_n = sum((x_i - mean)^n) \$] */
       template<class TReal, int N, class Iter_T>
       TReal nthMoment(Iter_T first, Iter_T last, TReal mean)  {
         size_t cnt = distance(first, last);

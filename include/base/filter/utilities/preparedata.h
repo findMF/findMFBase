@@ -5,14 +5,11 @@ namespace ralab{
   namespace base{
     namespace filter{
       namespace utilities{
-        /*!\brief
 
-       Sequence: 1 2 3 4 5 , and filter width 5 and mirror false than res will be:
-       4 5 1 2 3 4 5 1 2,
-       if mirror true than:
-       2 1 1 2 3 4 5 5 4
-
-       */
+       /// Sequence: 1 2 3 4 5 , and filter width 5 and mirror false than res will be:
+       /// 4 5 1 2 3 4 5 1 2,
+       /// if mirror true than:
+       /// 2 1 1 2 3 4 5 5 4
         template <typename TContainer ,typename TIterator>
         typename TContainer::iterator prepareData
         (

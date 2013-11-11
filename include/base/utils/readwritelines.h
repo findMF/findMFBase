@@ -14,9 +14,6 @@
 #include <boost/tokenizer.hpp>
 #include <boost/lexical_cast.hpp>
 
-/*! \file ReadWriteLine.h
-\brief Read from Write in Lines File
-*/
 
 namespace ralab
 {
