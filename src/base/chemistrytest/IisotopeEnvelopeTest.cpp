@@ -24,7 +24,6 @@ namespace ralab{
       mab.push_back(8.07);
       mab.push_back(2.73);
       mab.push_back(0.78);
-
       return mab;
     }
 
