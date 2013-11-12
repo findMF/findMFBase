@@ -8,10 +8,7 @@
 #define CUMSUM_H
 #include <vector>
 #include <cstddef>
-/*! \file cumsum.h
-\brief functions for package base: cumsum, cumprod, cummax, cummin
 
-*/
 
 namespace ralab
 {
@@ -23,7 +20,7 @@ namespace ralab
     template<typename TIterator, typename T>
     void cumsum(
         TIterator  beg,//!< [in] vector of values of type T
-        TIterator end,//!< [in]
+        TIterator end,//!< [in] end
         std::vector<T> & res //!<[out] cumulative sum
         )
     {
@@ -46,7 +43,7 @@ namespace ralab
     template<typename TIterator>
     TIterator cumsum(
         TIterator  beg,//!< [in] vector of values of type T
-        TIterator end //<! [in] end iterator of sequence
+        TIterator end //!< [in] end iterator of sequence
         )
     {
       TIterator begRes = beg;

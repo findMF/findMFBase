@@ -15,6 +15,13 @@ message( STATUS "lib ${lib}" )
 message( STATUS "inc boost ${inc}" )
 message( STATUS ">>>> ${Boost_LIBRARIES} <<<<" )
 
+include(ExternalProject)
+include(externalgoogletest)
+set(inc ${inc} ${Gtest_SourceDir})
+message(STATUS "Gtest_LIBRARY ${Gtest_LIBRARY}")
+message(STATUS "inc ${inc}")
+
+
 ENABLE_TESTING()
 
 ADD_SUBDIRECTORY(base)

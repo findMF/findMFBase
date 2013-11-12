@@ -40,12 +40,11 @@ namespace ralab
           }
         };//
 
-        /// CosineInterpolate Functor
-        /// Linear interpolation results in discontinuities at each point.
-        /// Often a smoother interpolating function is desirable, perhaps the simplest is cosine interpolation.
-        /// A suitable orientated piece of a cosine function serves
-        /// to provide a smooth transition between adjacent segments.
-
+        // CosineInterpolate Functor
+        // Linear interpolation results in discontinuities at each point.
+        // Often a smoother interpolating function is desirable, perhaps the simplest is cosine interpolation.
+        // A suitable orientated piece of a cosine function serves
+        // to provide a smooth transition between adjacent segments.
         template<typename TReal>
         struct CosineInterpolate
         {
@@ -63,17 +62,15 @@ namespace ralab
         };
 
 
-        /// CubicInterpolate Functor
-
-        /// Cubic interpolation is the simplest method that offers true continuity between the segments.
-        /// As such it requires more than just the two endpoints of the segment but also the two points on either side of them.
-        /// So the function requires 4 points in all labeled y0, y1, y2, and y3, in the code below.
-        /// mu still behaves the same way for interpolating between the segment y1 to y2.
-        /// This doe  s raise issues for how to interpolate between the first and last segments.
-        /// In the examples here I just haven't bothered.
-        /// A common solution is the dream up two extra points at the start and end of the sequence,
-        /// the new points are created so that they have a slope equal to the slope of the start or end segment.
-
+        // CubicInterpolate Functor
+        // Cubic interpolation is the simplest method that offers true continuity between the segments.
+        // As such it requires more than just the two endpoints of the segment but also the two points on either side of them.
+        // So the function requires 4 points in all labeled y0, y1, y2, and y3, in the code below.
+        // mu still behaves the same way for interpolating between the segment y1 to y2.
+        // This doe  s raise issues for how to interpolate between the first and last segments.
+        // In the examples here I just haven't bothered.
+        // A common solution is the dream up two extra points at the start and end of the sequence,
+        // the new points are created so that they have a slope equal to the slope of the start or end segment.
         template<typename TReal>
         struct CubicInterpolate
         {
@@ -113,14 +110,13 @@ namespace ralab
           }
         };
 
-        /// HermiteInterpolation.
-        /// Hermite interpolation like cubic requires 4 points so that it can achieve a higher degree of continuity.
-        /// In addition it has nice tension and biasing controls.
-        /// Tension can be used to tighten up the curvature at the known points.
-        /// The bias is used to twist the curve about the known points.
-        /// The examples shown here have the default tension and bias values of 0,
-        /// it will be left as an exercise for the reader to explore different tension and bias values.
-
+        // HermiteInterpolation.
+        // Hermite interpolation like cubic requires 4 points so that it can achieve a higher degree of continuity.
+        // In addition it has nice tension and biasing controls.
+        // Tension can be used to tighten up the curvature at the known points.
+        // The bias is used to twist the curve about the known points.
+        // The examples shown here have the default tension and bias values of 0,
+        // it will be left as an exercise for the reader to explore different tension and bias values.
         template<typename TReal>
         struct HermiteInterpolate
         {
@@ -170,7 +166,7 @@ namespace ralab
         }; // HermiteInterpolation
 
 
-        /// Cubic or Hermite interpolation worker
+        // Cubic or Hermite interpolation worker
         template<
             typename YInputIterator,
             typename XInputIterator,
@@ -254,7 +250,7 @@ namespace ralab
             }//end for
         }//end interpolate_cubic
 
-        /// Linear cubic interpolator worker
+        // Linear cubic interpolator worker
         template <
             typename YInputIterator,
             typename XInputIterator,

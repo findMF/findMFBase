@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/wolski/findMFBase.png?branch=master)](https://travis-ci.org/wolski/findMFBase)
+
 findMFBase - find molecular features base functions
 
 ==

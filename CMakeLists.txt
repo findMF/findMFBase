@@ -9,7 +9,7 @@ cmake_minimum_required(VERSION 2.8)
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake_modules/")
 
 #############################################################################
-# versioning
+# Versioning
 #############################################################################
 INCLUDE(GetGitRevisionDescription)
 get_git_head_revision(GIT_REFSPEC MSTK_VERSION)
@@ -21,7 +21,6 @@ get_git_head_revision(GIT_REFSPEC MSTK_VERSION)
 
 include(findmfDefaults)
 include(BuildType)
-
 message(STATUS "CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE}")
 
 IF(MSVC)
@@ -51,7 +50,9 @@ ENDIF(MSVC)
 
 add_definitions("-DCMAKE_VERBOSE_MAKEFILE=ON")
 
-##define output
+#############################################################################
+##define output location
+#############################################################################
 set(BinOut ${CMAKE_SOURCE_DIR}/${CMAKE_PROJECT_NAME}out/${} )
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${BinOut} )
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BinOut} )
@@ -65,11 +66,8 @@ SET(inc ${inc} ${CMAKE_SOURCE_DIR})
 SET(inc ${inc} ${CMAKE_SOURCE_DIR}/include)
 
 #############################################################################
-# make headers visible to QT Creator
+# QT tweak so that it sees headers
 #############################################################################
-
-
-#QT tweak so that it sees headers
 file(GLOB Demo_HEADERS "sql/*.sql" "include/*.h" "include/**/*.h" "include/**/**/*.h" "include/**/**/**/*.h" "src/**/*.h" "src/**/**/*.h")
 add_library(headers SHARED ${Demo_HEADERS} Dummy.cpp)
 
