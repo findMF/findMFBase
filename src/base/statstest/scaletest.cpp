@@ -49,16 +49,17 @@ namespace {
     std::vector<double> tmp(x);
     std::pair<double,double> scaled;
 
-    ralab::base::stats::scale(x.begin(),x.end(),scaled,false,false);
-    bool isequal = std::equal(x.begin(),x.end(),tmp.begin(),ralab::base::resample::DaCompFunctor<double>(epsilon));
+    ralab::base::stats::scale(x.begin(), x.end(), scaled, false, false);
+    bool isequal = std::equal(x.begin(), x.end(), tmp.begin(), ralab::base::resample::DaCompFunctor<double>(epsilon));
     ASSERT_TRUE(isequal);
+
     // test center=false , scale = true.
     //  c(scale(seq(1,10),F,T)) #(in R)
     double scaleFT[10] ={  0.1528942, 0.3057883, 0.4586825, 0.6115766, 0.7644708, 0.9173649, 1.0702591, 1.2231533, 1.3760474, 1.5289416};
     ralab::base::stats::scale(x.begin(),x.end(),scaled, false,true);
     isequal = std::equal(x.begin(), x.end(), scaleFT,ralab::base::resample::DaCompFunctor<double>(epsilon) );
     ASSERT_TRUE(isequal);
-    ASSERT_NEAR( scaled.first, std::numeric_limits<double>::quiet_NaN() , epsilon);
+    ASSERT_TRUE( scaled.first != scaled.first); // this is only true if first is NAN - std::numeric_limits<double>::quiet_NaN() );
     ASSERT_NEAR( scaled.second, 6.540472, epsilon);
     // test center=true , scale = false.
     //  c(scale(seq(1,10),T,F)) #(in R)
@@ -68,7 +69,7 @@ namespace {
     isequal = std::equal(x.begin(), x.end(), scaleTF,ralab::base::resample::DaCompFunctor<double>(epsilon) );
     ASSERT_TRUE(isequal);
     ASSERT_NEAR(scaled.first, 5.5, epsilon);
-    ASSERT_NEAR(scaled.second, std::numeric_limits<double>::quiet_NaN(), epsilon);
+    ASSERT_TRUE(scaled.second != scaled.second);
     // test center=true , scale = false.
     //  c(scale(seq(1,10),T,T)) #(in R)
     x.assign(tmp.begin(),tmp.end());
@@ -78,7 +79,6 @@ namespace {
     ASSERT_TRUE(isequal);
     ASSERT_NEAR(scaled.first, 5.5, epsilon);
     ASSERT_NEAR(scaled.second, 3.027650, epsilon);
-
   }
 }//namespace
 
