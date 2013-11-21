@@ -26,10 +26,10 @@ WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 COMMAND ${BinOut}/backgroundsubtracttest )
 set_tests_properties(backgroundsubtracttest PROPERTIES ENVIRONMENT "${LD_VARNAME}=${LD_PATH}")
 
-add_test(NAME filterutilstest
+add_test(NAME filterutilstest2
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-COMMAND ${BinOut}/filterutilstest )
-set_tests_properties(filterutilstest PROPERTIES ENVIRONMENT "${LD_VARNAME}=${LD_PATH}")
+COMMAND ${BinOut}/filterutilstest2 )
+set_tests_properties(filterutilstest2 PROPERTIES ENVIRONMENT "${LD_VARNAME}=${LD_PATH}")
 
 add_test(NAME gaussfiltertest
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
