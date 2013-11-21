@@ -3,8 +3,11 @@
 // Authors   : Witold Wolski
 // for full text refer to files: LICENSE, AUTHORS and COPYRIGHT
 
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MODULE Hello
+#include <boost/test/unit_test.hpp>
+
 #include "base/chemistry/iisotopeenvelope.h"
-#include <gtest/gtest.h>
 
 
 // a sample implementation of the IisotopeEnvelope interface
@@ -29,36 +32,18 @@ namespace ralab{
 
 }
 
-namespace {
 
-  // The fixture for testing class Foo.
-  class IsotopeEnvelopeTest : public ::testing::Test {
-  protected:
-    std::vector<double> data , dcumsum , res , res2;
+BOOST_AUTO_TEST_SUITE(IsotopeEnvelopeTest)
 
-    // You can remove any or all of the following functions if its body
-    // is empty.
-    IsotopeEnvelopeTest() {
-      // You can do set-up work for each test here.
-    }
-    virtual ~IsotopeEnvelopeTest() {
-    }
-  };
-
-  // Tests that the Foo::Bar() method does Abc.
-  TEST_F(IsotopeEnvelopeTest, testEnvelope) {
-    ralab::base::chemistry::IIsotopeEnvelope * bla = new ralab::IsotopeEnvelope;
-    ralab::base::chemistry::MassAbundance blue;
-    blue = bla->isotopeEnvelope(1700.);
-    ASSERT_NEAR(blue[0], 35.22 , 1e-7);
-  }
-
-
-
-
-}  // namespace
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+// Tests that the Foo::Bar() method does Abc.
+BOOST_AUTO_TEST_CASE(testEnvelope)
+{
+  ralab::base::chemistry::IIsotopeEnvelope * bla = new ralab::IsotopeEnvelope;
+  ralab::base::chemistry::MassAbundance blue;
+  blue = bla->isotopeEnvelope(1700.);
+  BOOST_CHECK_CLOSE(blue[0], 35.22 , 1e-7);
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+
+

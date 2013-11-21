@@ -7,10 +7,10 @@ include_directories(${inc})
 link_directories(${Gtest_LIBRARY})
 
 ADD_EXECUTABLE(copy_iftest copy_iftest.cpp )
-TARGET_LINK_LIBRARIES(copy_iftest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(copy_iftest  ${Boost_LIBRARIES} )
 
 ADD_EXECUTABLE(readLines readLines.cpp )
-TARGET_LINK_LIBRARIES(readLines  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(readLines  ${Boost_LIBRARIES} )
 
 
 add_test(NAME copy_iftest

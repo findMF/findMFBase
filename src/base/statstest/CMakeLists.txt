@@ -8,19 +8,19 @@ link_directories(${Gtest_LIBRARY})
 
 
 ADD_EXECUTABLE(scaletest scaletest.cpp )
-TARGET_LINK_LIBRARIES(scaletest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(scaletest  ${Boost_LIBRARIES} )
 
 
 ADD_EXECUTABLE(quantilestest quantilestest.cpp )
-TARGET_LINK_LIBRARIES(quantilestest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(quantilestest  ${Boost_LIBRARIES} )
 
 
 ADD_EXECUTABLE(momentstest momentstest.cpp )
-TARGET_LINK_LIBRARIES(momentstest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(momentstest  ${Boost_LIBRARIES} )
 
 
 ADD_EXECUTABLE(momentsWtest momentsWtest.cpp )
-TARGET_LINK_LIBRARIES(momentsWtest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(momentsWtest  ${Boost_LIBRARIES} )
 
 
 

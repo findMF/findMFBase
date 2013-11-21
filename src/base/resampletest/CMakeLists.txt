@@ -8,17 +8,17 @@ link_directories(${Gtest_LIBRARY})
 
 
 ADD_EXECUTABLE(equispaceinterpolationtest equispaceinterpolationtest.cpp )
-TARGET_LINK_LIBRARIES(equispaceinterpolationtest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(equispaceinterpolationtest  ${Boost_LIBRARIES} )
 
 ADD_EXECUTABLE(bucket1dtest bucket1dtest.cpp )
-TARGET_LINK_LIBRARIES(bucket1dtest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(bucket1dtest  ${Boost_LIBRARIES} )
 
 
 ADD_EXECUTABLE(convert2densetest convert2densetest.cpp )
-TARGET_LINK_LIBRARIES(convert2densetest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(convert2densetest  ${Boost_LIBRARIES} )
 
 ADD_EXECUTABLE(determinbinwithtest determinbinwithtest.cpp )
-TARGET_LINK_LIBRARIES(determinbinwithtest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(determinbinwithtest  ${Boost_LIBRARIES} )
 
 add_test(NAME equispaceinterpolationtest
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}

@@ -7,13 +7,13 @@ include_directories(${inc})
 link_directories(${Gtest_LIBRARY})
 
 ADD_EXECUTABLE(simplepickertest simplepickertest.cpp )
-TARGET_LINK_LIBRARIES(simplepickertest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(simplepickertest  ${Boost_LIBRARIES} )
 
 ADD_EXECUTABLE(peakpickertest peakpickertest.cpp )
-TARGET_LINK_LIBRARIES(peakpickertest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(peakpickertest  ${Boost_LIBRARIES} )
 
 ADD_EXECUTABLE(parabolafittest parabolafittest.cpp )
-TARGET_LINK_LIBRARIES(parabolafittest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(parabolafittest  ${Boost_LIBRARIES} )
 
 
 ENABLE_TESTING()

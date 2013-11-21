@@ -4,19 +4,16 @@ include_directories(${inc})
 link_directories(${Gtest_LIBRARY})
 
 ADD_EXECUTABLE(morphologytest morphologytest.cpp )
-TARGET_LINK_LIBRARIES(morphologytest  ${Boost_LIBRARIES}  gtest)
+TARGET_LINK_LIBRARIES(morphologytest  ${Boost_LIBRARIES}  )
 
 ADD_EXECUTABLE(backgroundsubtracttest backgroundsubtracttest.cpp )
-TARGET_LINK_LIBRARIES(backgroundsubtracttest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(backgroundsubtracttest  ${Boost_LIBRARIES} )
 
-ADD_EXECUTABLE(filterutilstest filterutilstest.cpp )
-TARGET_LINK_LIBRARIES(filterutilstest  ${Boost_LIBRARIES} gtest)
+ADD_EXECUTABLE(filterutilstest2 filterutilstest2.cpp )
+TARGET_LINK_LIBRARIES(filterutilstest2  ${Boost_LIBRARIES})
 
 ADD_EXECUTABLE(gaussfiltertest gaussfiltertest.cpp )
-TARGET_LINK_LIBRARIES(gaussfiltertest  ${Boost_LIBRARIES} gtest)
-
-#ADD_EXECUTABLE(mexhatfiltertest mexhatfiltertest.cpp )
-#TARGET_LINK_LIBRARIES(mexhatfiltertest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(gaussfiltertest  ${Boost_LIBRARIES} )
 
 
 add_test(NAME morphologytest

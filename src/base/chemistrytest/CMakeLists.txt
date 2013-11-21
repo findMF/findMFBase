@@ -1,7 +1,7 @@
 include_directories(${inc})
 link_directories(${Gtest_LIBRARY})
 ADD_EXECUTABLE(IisotopeEnvelopeTest IisotopeEnvelopeTest.cpp)
-TARGET_LINK_LIBRARIES(IisotopeEnvelopeTest  gtest pthread)
+TARGET_LINK_LIBRARIES(IisotopeEnvelopeTest  ${Boost_LIBRARIES})
 
 
 add_test(NAME IisotopeEnvelopeTest

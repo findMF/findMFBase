@@ -2,9 +2,11 @@
 // License   : three-clause BSD license
 // Authors   : Witold Wolski
 // for full text refer to files: LICENSE, AUTHORS and COPYRIGHT
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MODULE Fixtures
+#include <boost/test/unit_test.hpp>
 
 
-#include "gtest/gtest.h"
 #include "base/stats/quantiles.h"
 
 #include "base/stats/momentsW.h"
@@ -14,17 +16,16 @@
 #include "base/resample/masscomparefunctors.h"
 #include "base/stats/uniform.h"
 
-namespace {
 
   // The fixture for testing class Foo.
-  class MomentsWTest : public ::testing::Test {
+  class MomentsWH  {
   protected:
     std::vector<double> m_data;
     std::vector<double> m_weight;
 
     // You can remove any or all of the following functions if its body
     // is empty.
-    MomentsWTest() {
+    MomentsWH() {
       m_data.push_back(2);
       m_data.push_back(4);
       m_data.push_back(8);
@@ -43,26 +44,30 @@ namespace {
 
     // Objects declared here can be used by all tests in the test case for Foo.
   };
-  TEST_F(MomentsWTest, weightedmoment){
+
+  BOOST_FIXTURE_TEST_SUITE(MomentsWTest, MomentsWH)
+
+
+  BOOST_AUTO_TEST_CASE(testmean){
     double res , epsilon(0.0001);
     res = ralab::stats::meanW(m_data.begin(),m_data.end() , m_weight.begin());
-    ASSERT_NEAR(res,33.0,epsilon);
+    BOOST_CHECK_CLOSE(res,33.0,epsilon);
     res = ralab::stats::varW(m_data.begin(),m_data.end() , m_weight.begin() , 33.0 );
-    ASSERT_NEAR(res,1750.0,epsilon);
+    BOOST_CHECK_CLOSE(res,1750.0,epsilon);
     res = ralab::stats::varW(m_data.begin() , m_data.end(), m_weight.begin());
-    ASSERT_NEAR(res,1750.0,epsilon);
+    BOOST_CHECK_CLOSE(res,1750.0,epsilon);
 
     res = ralab::stats::sdW(m_data.begin(),m_data.end() , m_weight.begin() , 33.0 );
-    ASSERT_NEAR(res,41.833,epsilon);
+    BOOST_CHECK_CLOSE(res,41.833,epsilon);
     res = ralab::stats::sdW(m_data.begin() , m_data.end(), m_weight.begin() );
-    ASSERT_NEAR(res,41.833,epsilon);
+    BOOST_CHECK_CLOSE(res,41.833,epsilon);
     res = ralab::stats::varWUnbiased(m_data.begin(),m_data.end(), m_weight.begin());
-    ASSERT_NEAR(res,2205,epsilon);
+    BOOST_CHECK_CLOSE(res,2205,epsilon);
     res = ralab::stats::sdWUnbiased(m_data.begin(),m_data.end(), m_weight.begin());
-    ASSERT_NEAR(res,46.95743,epsilon);
+    BOOST_CHECK_CLOSE(res,46.95743,epsilon);
   }
 
-   TEST_F(MomentsWTest, weightedSkewness){
+   BOOST_AUTO_TEST_CASE(testskew){
      double res , epsilon(0.0001);
      double data[12] = {-2.75, -2.25, -1.75, -1.25, -0.75, -0.25,  0.25,  0.75,  1.25,  1.75,  2.25,  2.75};
      double weight[12] = { 6,  12,  42,  90, 145, 211, 187, 145, 92, 48, 16, 6};
@@ -81,19 +86,19 @@ namespace {
      m_weight.assign(weightexp, weightexp+12);
 
      res = ralab::stats::skewW(m_data.begin(), m_data.end(), m_weight.begin(), 1., 1.);
-     ASSERT_TRUE( res > 0 );
+     BOOST_CHECK( res > 0 );
      res = ralab::stats::skewW(m_data.begin(), m_data.end(), m_weight.begin());
-     ASSERT_TRUE( res > 0 );
+     BOOST_CHECK( res > 0 );
 
 
      std::reverse(m_weight.begin(), m_weight.end());
      res = ralab::stats::skewW(m_data.begin(), m_data.end(), m_weight.begin(), 5., 1.);
-     ASSERT_TRUE( res < 0 );
+     BOOST_CHECK( res < 0 );
      res = ralab::stats::skewW(m_data.begin(), m_data.end(), m_weight.begin());
-     ASSERT_TRUE( res < 0 );
+     BOOST_CHECK( res < 0 );
    }
 
-   TEST_F(MomentsWTest,weightedkurtosis ){
+   BOOST_AUTO_TEST_CASE(testkurt ){
      double res , epsilon(0.0001);
      ///normal distribution with mean = 0 and sigma 1
      double data[12] = {-2.75, -2.25, -1.75, -1.25, -0.75, -0.25,  0.25,  0.75,  1.25,  1.75,  2.25,  2.75};
@@ -112,14 +117,9 @@ namespace {
      m_weight.assign(weightcauchy, weightcauchy+12);
 
      res = ralab::stats::kurtW(m_data.begin(), m_data.end(), m_weight.begin(), 1.0, 1.);
-     ASSERT_TRUE( res > 0 );
+     BOOST_CHECK( res > 0 );
      res = ralab::stats::skewW(m_data.begin(),m_data.end() , m_weight.begin());
-     ASSERT_TRUE( res > 0 );
+     BOOST_CHECK( res > 0 );
    }
 
-}  // namespace
-
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+   BOOST_AUTO_TEST_SUITE_END()

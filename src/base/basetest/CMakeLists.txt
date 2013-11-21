@@ -5,15 +5,15 @@ link_directories(${Gtest_LIBRARY})
 
 
 ADD_EXECUTABLE(basetest basetest.cpp )
-TARGET_LINK_LIBRARIES(basetest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(basetest  ${Boost_LIBRARIES} )
 
 
 ADD_EXECUTABLE(cumsumtest cumsumtest.cpp )
-TARGET_LINK_LIBRARIES(cumsumtest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(cumsumtest  ${Boost_LIBRARIES} )
 
 
 ADD_EXECUTABLE(difftest difftest.cpp )
-TARGET_LINK_LIBRARIES(difftest  ${Boost_LIBRARIES} gtest)
+TARGET_LINK_LIBRARIES(difftest  ${Boost_LIBRARIES} )
 
 
 ENABLE_TESTING()
