@@ -24,7 +24,8 @@ namespace ralab
 
     /// variance \f[ mu_2 = 1/N \cdot \sum{(x_i - \mu)^2} \f]
     template<class Iter_T>
-    typename std::iterator_traits<Iter_T>::value_type  var(Iter_T first, Iter_T last) {
+    typename std::iterator_traits<Iter_T>::value_type
+    var(Iter_T first, Iter_T last) {
       typedef typename std::iterator_traits<Iter_T>::value_type TReal;
       TReal mean(ralab::base::base::mean(first, last));
       return utilities::nthMoment<TReal, 2>(first, last, mean);
@@ -32,7 +33,8 @@ namespace ralab
 
     /// unbiased variance \f[ 1/(n-1) \sum{(x - \mu)^2} \f]
     template<class Iter_T>
-    typename std::iterator_traits<Iter_T>::value_type varUnbiased(Iter_T first, Iter_T last)
+    typename std::iterator_traits<Iter_T>::value_type
+    varUnbiased(Iter_T first, Iter_T last)
     {
       typedef typename std::iterator_traits<Iter_T>::value_type TReal;
       TReal mean( ralab::base::base::mean(first,last) );

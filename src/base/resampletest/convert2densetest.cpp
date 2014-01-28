@@ -27,9 +27,9 @@ BOOST_AUTO_TEST_CASE(testConvert)
   c2d.defBreak(tmp,ppm);
   std::vector<double> mids;
   c2d.getMids(mids);
-  c2d.am_ = 0.1;
+  c2d.setAm(0.1 , true);
 
-  double mz[] = {1001. , 1001.5 , 1001.8 , 1004. , 1005., 1008. , 1009. , 1009.3};
+  double mz[] = {1000.0000001,1001. , 1001.5 , 1001.8 , 1004. , 1005., 1008. , 1009. , 1009.3};
   size_t smz = sizeof(mz)/sizeof(double);
   std::vector<double> intensity( smz, 10.), gg;
   double all = std::accumulate(intensity.begin(),intensity.end(),0.);

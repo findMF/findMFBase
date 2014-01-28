@@ -68,7 +68,8 @@ SET(inc ${inc} ${CMAKE_SOURCE_DIR}/include)
 #############################################################################
 # QT tweak so that it sees headers
 #############################################################################
-file(GLOB Demo_HEADERS "sql/*.sql" "include/*.h" "include/**/*.h" "include/**/**/*.h" "include/**/**/**/*.h" "src/**/*.h" "src/**/**/*.h")
+file(GLOB Demo_HEADERS "sql/*.sql" "include/*.h" "include/**/*.h" "include/**/**/*.h"
+ "include/**/**/**/*.h" "src/**/*.h" "src/**/**/*.h" ".travis.yml")
 add_library(headers SHARED ${Demo_HEADERS} Dummy.cpp)
 
 

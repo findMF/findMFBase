@@ -17,9 +17,12 @@
 #include "base/utils/copyif.h"
 
 
-namespace ralab{
-  namespace base{
-    namespace ms{
+namespace ralab
+{
+  namespace base
+  {
+    namespace ms
+    {
 
       /// resamples spectrum, apply smoothing,
       /// determines zero crossings,
@@ -173,9 +176,12 @@ namespace ralab{
           ralab::base::filter::getGaussianFilterQuantile(filter_,width);
         }
 
-
+        /// pick the spectrum
         template<typename Tmass, typename Tintensity>
-        void operator()(Tmass begmz, Tmass endmz, Tintensity begint )
+        void operator()(Tmass begmz, //!< mz begin
+                        Tmass endmz, //!< mz end
+                        Tintensity begint //!< intensity begin
+                        )
         {
           typename std::iterator_traits<Tintensity>::value_type minint = *std::upper_bound(begint,begint+std::distance(begmz,endmz),0.1);
           //typename std::iterator_traits<Tintensity>::value_type minint =*std::min_element(begint,begint+std::distance(begmz,endmz));
@@ -184,7 +190,7 @@ namespace ralab{
           //determine sampling with
           double a = sw_(begmz,endmz);
           //resmpale the spectrum
-          c2d_.am_ = a;
+          c2d_.setAm(a);
           c2d_.convert2dense(begmz,endmz, begint, resampledintensity_);
 
           //smooth the resampled spectrum

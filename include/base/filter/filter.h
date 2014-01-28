@@ -11,6 +11,7 @@
 #include <functional>
 #include <numeric>
 #include <limits>
+#include <boost/cstdint.hpp>
 
 #include <boost/iterator/reverse_iterator.hpp>
 #include <boost/bind.hpp>
@@ -27,6 +28,8 @@ namespace ralab
   {
     namespace filter
     {
+
+      typedef boost::uint32_t uint32_t;
 
       template <typename TIterator, typename TFilterIterator, typename TOutputIterator>
       void filter_sequence(

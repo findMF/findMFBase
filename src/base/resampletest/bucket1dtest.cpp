@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(testBin1D2){
   std::vector<int32_t> idx;
   std::vector<double> dist;
   bin(2. -1e-8 , 2. + 2e-4,  idx, dist ) ;
-  BOOST_CHECK_EQUAL(idx[0],-1);
+  BOOST_CHECK_EQUAL(idx[0],0);
   BOOST_CHECK_EQUAL(idx[1],0);
   BOOST_CHECK_SMALL(dist[0] - 1e-8,1e-10);
   BOOST_CHECK_SMALL(dist[1] - 2e-4,1e-10);
