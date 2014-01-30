@@ -101,7 +101,13 @@ namespace ralab
                 check += bb;
               }
             }
-            BOOST_ASSERT( fabs(check - intensd) < 1e-2 );
+
+            // checking
+            if( fabs(check - intensd) > 1e-2 ){
+              std::cerr << "check : " << check << " ";
+              std::cerr << " intensd : " << intensd << " ";
+              std::cerr << " am_ " << am_ << std::endl;
+            }
           }
         }//convert2dense
 
