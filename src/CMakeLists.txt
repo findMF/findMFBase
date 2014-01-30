@@ -23,7 +23,6 @@ message( STATUS ">>>> ${Boost_LIBRARIES} <<<<" )
 
 
 ENABLE_TESTING()
-
 ADD_SUBDIRECTORY(base)
 
 
