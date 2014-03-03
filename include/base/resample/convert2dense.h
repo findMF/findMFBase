@@ -3,7 +3,9 @@
 
 #include <vector>
 #include <iostream>
+#include <numeric>
 #include <boost/assert.hpp>
+
 #include "base/resample/masscomparefunctors.h"
 #include "base/resample/breakspec.h"
 #include "base/resample/bin1d.h"
