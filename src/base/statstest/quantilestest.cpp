@@ -19,6 +19,36 @@
 
 BOOST_AUTO_TEST_SUITE(QuantilesTest)
 
+BOOST_AUTO_TEST_CASE(testQuantileSval){
+  double epsilon(1e-10);
+  std::vector<double> values, suffle ;
+  ralab::base::base::seq(1.,20.,0.3,values);
+  suffle.assign(values.begin(),values.end());
+  std::random_shuffle(suffle.begin(),suffle.end());
+
+  double q1 = ralab::stats::quantile(values.begin(),values.end(),0.5);
+  double q2 = ralab::stats::quantile(suffle.begin(),suffle.end(),0.5);
+
+  BOOST_CHECK_CLOSE( q1 , q2, epsilon);
+  q1 = ralab::stats::quantile(values.begin(),values.end(),0.6);
+  q2 = ralab::stats::quantile(suffle.begin(),suffle.end(),0.6);
+  BOOST_CHECK_CLOSE( q1 , q2, epsilon);
+
+  q1 = ralab::stats::quantile(values.begin(),values.end(),0.3);
+  q2 = ralab::stats::quantile(suffle.begin(),suffle.end(),0.3);
+  BOOST_CHECK_CLOSE( q1 , q2, epsilon);
+
+  q1 = ralab::stats::quantile(values.begin(),values.end(),1.);
+  q2 = ralab::stats::quantile(suffle.begin(),suffle.end(),1.);
+  BOOST_CHECK_CLOSE( q1 , q2, epsilon);
+
+  q1 = ralab::stats::quantile(values.begin(),values.end(),0.);
+  q2 = ralab::stats::quantile(suffle.begin(),suffle.end(),0.);
+  BOOST_CHECK_CLOSE( q1 , q2, epsilon);
+
+}
+
+
 BOOST_AUTO_TEST_CASE(testQuantileStats2){
   double epsilon(1e-10);
   std::vector<double> values ;
@@ -61,6 +91,9 @@ BOOST_AUTO_TEST_CASE(testQuantileStats2){
   ref.push_back(20.00);
 
   ralab::stats::quantile(values, probs, quantiles);
+
+
+
 
   BOOST_CHECK(std::equal(ref.begin(), ref.end(), quantiles.begin(), ralab::base::resample::DaCompFunctor<double>(0.01)) );
   //Test Range

@@ -39,8 +39,7 @@ namespace ralab
         }
 
         /// initialize am with some unplausible large value.
-        Convert2Dense(double am = 0.1):bin_(),idx_(),weight_(),am_(am){
-        }
+        Convert2Dense(double am = 0.1):bin_(),idx_(),weight_(),am_(am){}
 
         /// computes split points of an map.
         std::size_t defBreak(std::pair<double, double> & mzrange, double ppm ){
@@ -102,8 +101,8 @@ namespace ralab
               }
             }
 
-            // checking
-            if( fabs(check - intensd) > 1e-2 ){
+            // checking only print if within range.
+            if( (fabs(check - intensd) > 1e-2) && idx_[0]>=0 ){
               std::cerr << "check : " << check << " ";
               std::cerr << " intensd : " << intensd << " ";
               std::cerr << " am_ " << am_ << std::endl;

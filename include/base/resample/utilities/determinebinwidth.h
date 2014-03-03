@@ -21,6 +21,7 @@ namespace ralab
         };
 
 
+        /// compute the average mean of: mean[i] = (a[i] + a[i + lag])/2
         template <
             typename InputIterator,
             typename OutputIterator,
@@ -42,6 +43,7 @@ namespace ralab
                   );
         }
 
+        ///
         template<typename TRealI>
         double determine(TRealI begin, TRealI end,double maxj=5.){
           //BOOST_ASSERT(!boost::range::is_sorted(begin,end));

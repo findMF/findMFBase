@@ -17,6 +17,7 @@ namespace ralab
   {
     namespace resample
     {
+      /// determine vendor spectrum sampling with
       struct SamplingWith{
         std::vector<double> diff_;
         std::vector<double> summ_;
@@ -31,13 +32,19 @@ namespace ralab
           diff_.resize(N-1);
           summ_.resize(N-1);
           am_.resize(N-1);
+          // compute differences
           ralab::base::base::diff(begin,end,diff_.begin(),1);
 
+          // compute average
           utilities::summ( begin , end,summ_.begin());
           //square the sum
+          // square root averages
           std::transform(summ_.begin(),summ_.end(),summ_.begin(),boost::bind(sqrt,_1));
+          // compute diff/averages
           std::transform(diff_.begin(),diff_.end(),summ_.begin(),am_.begin(),std::divides<double>());
+          // sort averages
           std::sort(am_.begin(),am_.end());
+          // determine am
           double am = utilities::determine(am_.begin(),am_.end());
           return am;
         }
