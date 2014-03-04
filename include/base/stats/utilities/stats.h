@@ -11,6 +11,7 @@
 #include <vector>
 #include <functional>
 #include <numeric>
+#include <stdint.h>
 
 namespace ralab
 {
