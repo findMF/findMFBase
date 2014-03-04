@@ -7,6 +7,8 @@
 #ifndef INTERPOLATIONUTILITIES_H
 #define INTERPOLATIONUTILITIES_H
 
+#include <cmath>
+
 namespace ralab
 {
   namespace base
