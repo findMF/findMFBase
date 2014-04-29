@@ -27,8 +27,10 @@ namespace ralab
         template<typename TRealI>
         double operator()(TRealI begin, TRealI end)
         {
+          double am;
           //BOOST_ASSERT(!boost::range::is_sorted(begin,end));
           std::size_t N = std::distance(begin,end);
+          if(N > 1){
           diff_.resize(N-1);
           summ_.resize(N-1);
           am_.resize(N-1);
@@ -45,7 +47,11 @@ namespace ralab
           // sort averages
           std::sort(am_.begin(),am_.end());
           // determine am
-          double am = utilities::determine(am_.begin(),am_.end());
+          am = utilities::determine(am_.begin(),am_.end());
+          }
+          else{
+          am = 0.;
+          }
           return am;
         }
       };
