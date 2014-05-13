@@ -88,13 +88,10 @@ namespace ralab
 
             if(n <= 0) // read until end of file
               {
-
                 for( std::string line; std::getline( file, line ); )
                   {
                     res.push_back(boost::lexical_cast<T>(line));
                   }
-
-
                 file.close();
               }
             else // read until and of file or until line n
@@ -104,8 +101,6 @@ namespace ralab
                     res.push_back(boost::lexical_cast<T>(line));
                     i++;
                   }
-
-
                 file.close();
               }
 

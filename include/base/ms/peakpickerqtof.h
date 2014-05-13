@@ -44,17 +44,17 @@ namespace ralab
         {
           typedef typename std::iterator_traits<Tout>::value_type AreaType;
           for( ; beginZ != endZ ; ++beginZ , ++area )
+          {
+            size_t idx = static_cast<size_t>( *beginZ );
+            size_t start = static_cast<size_t>( boost::math::round( idx - integwith_ ) );
+            size_t end = static_cast<size_t>( boost::math::round( idx + integwith_ + 2.) );
+            AreaType aread = 0.;
+            for( ; start != end ; ++start )
             {
-              size_t idx = static_cast<size_t>( *beginZ );
-              size_t start = static_cast<size_t>( boost::math::round( idx - integwith_ ) );
-              size_t end = static_cast<size_t>( boost::math::round( idx + integwith_ + 2.) );
-              AreaType aread = 0.;
-              for( ; start != end ; ++start )
-                {
-                  aread += *(resmpled + start);
-                }
-              *area = aread;
+              aread += *(resmpled + start);
             }
+            *area = aread;
+          }
         }
       };
 
@@ -82,23 +82,23 @@ namespace ralab
         {
           typedef typename std::iterator_traits<Tout>::value_type AreaType;
           for( ; beginZ != endZ ; ++beginZ , ++area )
-            {
-              size_t idx = static_cast<size_t>( *beginZ );
-              size_t start = static_cast<size_t>( boost::math::round( idx - integwith_ ) );
-              size_t end = static_cast<size_t>( boost::math::round( idx + integwith_ + 2) );
+          {
+            size_t idx = static_cast<size_t>( *beginZ );
+            size_t start = static_cast<size_t>( boost::math::round( idx - integwith_ ) );
+            size_t end = static_cast<size_t>( boost::math::round( idx + integwith_ + 2) );
 
-              Tintensity st = intensity + start;
-              Tintensity en = intensity + end;
-              Tintensity center = intensity + idx;
-              std::ptrdiff_t x1 = std::distance(st, center);
-              std::ptrdiff_t y1 = std::distance(center,en);
-              mextend(st , en , center);
-              std::ptrdiff_t x2 = std::distance(intensity,st);
-              std::ptrdiff_t y2 = std::distance(intensity,en);
-              std::ptrdiff_t pp = std::distance(st,en);
-              AreaType areav = std::accumulate(resampled+x2,resampled+y2,0.);
-              *area = areav;
-            }
+            Tintensity st = intensity + start;
+            Tintensity en = intensity + end;
+            Tintensity center = intensity + idx;
+            std::ptrdiff_t x1 = std::distance(st, center);
+            std::ptrdiff_t y1 = std::distance(center,en);
+            mextend(st , en , center);
+            std::ptrdiff_t x2 = std::distance(intensity,st);
+            std::ptrdiff_t y2 = std::distance(intensity,en);
+            std::ptrdiff_t pp = std::distance(st,en);
+            AreaType areav = std::accumulate(resampled+x2,resampled+y2,0.);
+            *area = areav;
+          }
         }
 
       private:
@@ -109,34 +109,34 @@ namespace ralab
           typedef typename std::iterator_traits<TInt>::value_type Intensitytype;
           //
           for(TInt intens = idx ; intens >= start;  --intens){
-              Intensitytype val1 = *intens;
-              Intensitytype val2 = *(intens-1);
-              if(val1 > threshold_){
-                  if(val1 < val2 ){
-                      start = intens;
-                      break;
-                    }
-                }
-              else{
-                  start = intens;
-                  break;
-                }
+            Intensitytype val1 = *intens;
+            Intensitytype val2 = *(intens-1);
+            if(val1 > threshold_){
+              if(val1 < val2 ){
+                start = intens;
+                break;
+              }
             }
+            else{
+              start = intens;
+              break;
+            }
+          }
 
           for(TInt intens = idx ; intens <= end;  ++intens){
-              Intensitytype val1 = *intens;
-              Intensitytype val2 = *(intens+1);
-              if(val1 > threshold_){
-                  if(val1 < val2 ){
-                      end = intens;
-                      break;
-                    }
-                }
-              else{
-                  end = intens;
-                  break;
-                }
+            Intensitytype val1 = *intens;
+            Intensitytype val2 = *(intens+1);
+            if(val1 > threshold_){
+              if(val1 < val2 ){
+                end = intens;
+                break;
+              }
             }
+            else{
+              end = intens;
+              break;
+            }
+          }
         }
       };
 
@@ -160,16 +160,18 @@ namespace ralab
         PeakIntegrator integrator_;
         TReal intensitythreshold_;
         bool area_;
+        uint32_t maxnumbersofpeaks_;
 
         PeakPicker(TReal resolution, //!< instrument resolution
                    std::pair<TReal, TReal> & massrange, //!< mass range of spectrum
                    TReal width = 2., //!< smooth width
                    TReal intwidth = 2., //!< integration width used for area compuation
-                   TReal intensitythreshold = 10., // intensity threshold
-                   bool area = true
+                   TReal intensitythreshold = 10., //!< intensity threshold
+                   bool area = true, //!< compute area or hight?
+                   uint32_t maxnumberofpeaks = 0 //!< maximum of peaks returned by picker
             ): resolution_(resolution),smoothwith_(width),
           integrationWidth_(intwidth),sw_(),integrator_(integrationWidth_),
-          intensitythreshold_(intensitythreshold),area_(area)
+          intensitythreshold_(intensitythreshold),area_(area),maxnumbersofpeaks_(maxnumberofpeaks)
         {
           c2d_.defBreak(massrange,ralab::base::resample::resolution2ppm(resolution));
           c2d_.getMids(resampledmz_);
@@ -185,7 +187,7 @@ namespace ralab
         {
           typename std::iterator_traits<Tintensity>::value_type minint = *std::upper_bound(begint,begint+std::distance(begmz,endmz),0.1);
           //typename std::iterator_traits<Tintensity>::value_type minint =*std::min_element(begint,begint+std::distance(begmz,endmz));
-          TReal threshold = static_cast<TReal>(minint) * intensitythreshold_;
+
 
           //determine sampling with
           double a = sw_(begmz,endmz);
@@ -207,22 +209,33 @@ namespace ralab
 
           //determine peak area
           if(area_){
-              peakarea_.resize(nrzerocross);
-              integrator_( zerocross_.begin(), zerocross_.begin() + nrzerocross ,
-                           smoothedintensity_.begin(),resampledintensity_.begin(), peakarea_.begin() );
-            }else{
-              //determine intensity
-              peakarea_.resize(nrzerocross);
-              ralab::base::base::interpolate_cubic( smoothedintensity_.begin() , smoothedintensity_.end() ,
-                                                    zerocross_.begin(),  zerocross_.begin()+nrzerocross ,
-                                                    peakarea_.begin());
-            }
+            peakarea_.resize(nrzerocross);
+            integrator_( zerocross_.begin(), zerocross_.begin() + nrzerocross ,
+                         smoothedintensity_.begin(),resampledintensity_.begin(), peakarea_.begin() );
+          }else{
+            //determine intensity
+            peakarea_.resize(nrzerocross);
+            ralab::base::base::interpolate_cubic( smoothedintensity_.begin() , smoothedintensity_.end() ,
+                                                  zerocross_.begin(),  zerocross_.begin()+nrzerocross ,
+                                                  peakarea_.begin());
+          }
+
+
+
+          TReal threshold = static_cast<TReal>(minint) * intensitythreshold_;
+
+          if(maxnumbersofpeaks_ > 0){
+            double threshmax = getNToppeaks();
+            if(threshmax > threshold)
+              threshold = threshmax;
+          }
+
           if(threshold > 0.01){
-              filter(threshold);
-            }
+            filter(threshold);
+          }
         }
 
-        //clean the masses using the threshold
+        /// clean the masses using the threshold
         void filter(TReal threshold){
           typename std::vector<TReal>::iterator a = ralab::base::utils::copy_if(peakarea_.begin(),peakarea_.end(),peakmass_.begin(),
                                                                                 peakmass_.begin(),boost::bind(std::greater<TReal>(),_1,threshold));
@@ -233,22 +246,39 @@ namespace ralab
           //int x = 1;
         }
 
+        /// get min instensity of peak to qualify for max-intensity;
+        TReal getNToppeaks(){
+          TReal intthres  = 0.;
+          if(maxnumbersofpeaks_ < peakarea_.size())
+          {
+            std::vector<TReal> tmparea( peakarea_.begin() , peakarea_.end() );
+            std::nth_element(tmparea.begin(),tmparea.end() - maxnumbersofpeaks_ , tmparea.end());
+            intthres = *(tmparea.end() - maxnumbersofpeaks_);
+          }
+          return intthres;
+        }
+
+        /// get peak mass
         const std::vector<TReal> & getPeakMass(){
           return peakmass_;
         }
 
+        /// get peak area
         const std::vector<TReal> & getPeakArea(){
           return peakarea_;
         }
 
+        /// get resampled mz
         const std::vector<TReal> & getResampledMZ(){
           return resampledmz_;
         }
 
+        /// get resampled intensity
         const std::vector<TReal> & getResampledIntensity(){
           return resampledintensity_;
         }
 
+        /// get smoothed intensity
         const std::vector<TReal> & getSmoothedIntensity(){
           return smoothedintensity_;
         }

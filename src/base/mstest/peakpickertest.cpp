@@ -25,9 +25,12 @@ protected:
     // You can do set-up work for each test here.
     SetUp();
   }
-  virtual void SetUp() {
 
-    typedef double value_type;
+  ~PeakPickerHelp(){
+     // tearDown();
+  }
+
+  virtual void SetUp() {
     std::size_t specsize=10000;
 
     ralab::base::stats::rnorm( specsize , data );
@@ -35,14 +38,16 @@ protected:
     ralab::base::base::seq_length(300.,1000.,dcumsum.size(),mass);
     // Code here will be called immediately after the constructor (right
     // before each test).
-
-
     ralab::base::ms::generateSampleSpec(specsize,3.,200,spec);
+  }
+
+  virtual void TearDown(){
+    std::cout << "" << std::endl;
   }
 };
 
 
-BOOST_FIXTURE_TEST_SUITE(GaussFilterTest,PeakPickerHelp)
+BOOST_FIXTURE_TEST_SUITE(TestPicker,PeakPickerHelp)
 
 
 // Tests that the Foo::Bar() method does Abc.
