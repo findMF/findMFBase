@@ -3,26 +3,38 @@
 findMFBase - find molecular features base functions
 
 ==
-Methods for feature detection in 1D and 2 D MS data.
+findMF is a header only libarary with good unit test coverage, hosted at github:
 
-How to build:
+Functionality provided:
 
-git clone git@github.com:wolski/findMFBase.git
+C++ versions of R-functions such as:
 
-mkdir findMFBase-build
+- range, scale, median,
+- seq, cumsum, diff, interpolate, quantiles, scale,
+- mean, var, sd, skew, kurtosis and their weighted versions.
+- runif, rnorm, dnorm, pnorm, qnorm
+- filter
+- interpolate : linear, cubic, hermite, cosine
+- utility functions : readwritebin, readtable, split, copyif
 
-cd findmf-build
+These functions work with iterators, and are not tied to a specific type of C++ container.
+ 
+The library contains also functionality specific to mass spectrometry:
+- re-sampling of ms spectra
+- peak detection
 
-ccmake ../findMFBase
+upon these algorithms an
+- peak picker for qtof data is provided in the library.
 
+findMFBase has an BSD licence.
+findMFBase has, one dependency : boost - any version of boost newer than 1.45 should be fine.
+The build system used is cmake.
 
-Structure:
+Most of the functionality is covered by unitests.
+findMFBase is regularly build and tested with the gcc and clang complier on Travis.
 
-
-- include/base - header only library depends on boost only.
-- src/base - tests testing the classes and methods in base
-
-You can find the CI Server for this project at:
-
-https://travis-ci.org/wolski/findMFBase
+The qtof peak picker provided with and based on this library, was thoroughly evaluated
+in the Aebersold Laboratory and compared with other peak pickers on ABSciex QTof data.
+It has been shown, and the results will be published soon, that it
+outperforms alternative peakpickers on this type of data. The binary version of the qtofpeakpicker can be downloaded and installed from http://proteowizard.sourceforge.net/
 
