@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/findMF/findMFBase.svg?branch=master)](https://travis-ci.org/findMF/findMFBase)
+[![Build Status](https://travis-ci.org/findMF/findMFBase.svg?branch=master)](https://travis-ci.org/findMF/findMFBase)[![Project Stats](https://www.ohloh.net/p/findMFBase/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/findMFBase)
 
 findMFBase - find molecular features base functions
 
@@ -37,4 +37,9 @@ The qtof peak picker provided with and based on this library, was thoroughly eva
 in the Aebersold Laboratory and compared with other peak pickers on ABSciex QTof data.
 It has been shown, and the results will be published soon, that it
 outperforms alternative peakpickers on this type of data. The binary version of the qtofpeakpicker can be downloaded and installed from http://proteowizard.sourceforge.net/
+
+
+
+
+
 
