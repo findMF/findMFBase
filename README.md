@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/findMF/findMFBase.svg?branch=master)](https://travis-ci.org/findMF/findMFBase)[![Project Stats](https://www.ohloh.net/p/findMFBase/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/findMFBase)
+[![Build Status](https://travis-ci.org/findMF/findMFBase.svg?branch=master)](https://travis-ci.org/findMF/findMFBase) [![Project Stats](https://www.ohloh.net/p/findMFBase/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/findMFBase)
 
 findMFBase - find molecular features base functions
 
