@@ -72,7 +72,7 @@ namespace ralab
           }
 
           bin_(mass1-deltamasshalf,mass2-deltamasshalf,idx,weight);
-          double sum = std::accumulate(weight_.begin(),weight_.end(),0.);
+          double sum = std::accumulate(weight.begin(),weight.end(),0.);
           BOOST_ASSERT(fabs(deltamass- sum) < 1e-8);
           return deltamass;
         }
