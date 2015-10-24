@@ -41,7 +41,7 @@ namespace ralab
           utilities::summ( begin , end,summ_.begin());
           //square the sum
           // square root averages
-          std::transform(summ_.begin(),summ_.end(),summ_.begin(),boost::bind(sqrt,_1));
+          //std::transform(summ_.begin(),summ_.end(),summ_.begin(),boost::bind(sqrt,_1));
           // compute diff/averages
           std::transform(diff_.begin(),diff_.end(),summ_.begin(),am_.begin(),std::divides<double>());
           // sort averages

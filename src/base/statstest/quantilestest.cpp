@@ -80,6 +80,7 @@ BOOST_AUTO_TEST_CASE(testQuantileStats2){
   probs.push_back(0.76);
   probs.push_back(0.9);
   probs.push_back(1);
+  
   std::vector<double> ref;
   ref.push_back(1.00); // 1.00  3.85  5.75  7.65 10.50 15.44 18.10 20.00
   ref.push_back(3.5);
@@ -91,9 +92,6 @@ BOOST_AUTO_TEST_CASE(testQuantileStats2){
   ref.push_back(20.00);
 
   ralab::stats::quantile(values, probs, quantiles);
-
-
-
 
   BOOST_CHECK(std::equal(ref.begin(), ref.end(), quantiles.begin(), ralab::base::resample::DaCompFunctor<double>(0.01)) );
   //Test Range

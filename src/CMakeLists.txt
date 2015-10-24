@@ -4,9 +4,11 @@
 # for full text refer to files: LICENSE, AUTHORS and COPYRIGHT
 
 set(BOOST_ROOT "C:/boost/boost_1_57_0/")
-SET(BOOST_MIN_VERSION "1.46.0")
-SET( USE_STATIC_BOOST ON)
+SET( USE_STATIC_BOOST OFF)
 set(Boost_USE_STATIC_LIBS ${USE_STATIC_BOOST})
+
+add_definitions( -DBOOST_ALL_NO_LIB )
+
 SET(BOOST_MIN_VERSION "1.46.0")
 find_package( Boost ${BOOST_MIN_VERSION} REQUIRED COMPONENTS date_time filesystem system iostreams thread regex program_options unit_test_framework)
 if(Boost_FOUND)
