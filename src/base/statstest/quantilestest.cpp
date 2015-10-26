@@ -49,6 +49,27 @@ BOOST_AUTO_TEST_CASE(testQuantileSval){
 }
 
 
+BOOST_AUTO_TEST_CASE(quantileStats3){
+	double epsilon(0.01);
+	std::vector<double> values;
+	ralab::base::stats::runif(10000, values, 0., 1.);
+	//Test Quantiles
+	std::vector<double> probs;
+	probs.push_back(0.0);
+	probs.push_back(0.15);
+	probs.push_back(0.25);
+	probs.push_back(0.35);
+	probs.push_back(0.5);
+	probs.push_back(0.76);
+	probs.push_back(0.9);
+	probs.push_back(1);
+	std::vector<double> quantiles;
+	//ralab::stats::fivenum(values, quantiles);
+
+	ralab::stats::quantileFromVec(values, probs, quantiles);
+	//BOOST_CHECK(std::equal(probs.begin(), probs.end(), quantiles.begin(), ralab::base::resample::DaCompFunctor<double>(epsilon)));
+}
+
 BOOST_AUTO_TEST_CASE(testQuantileStats2){
   double epsilon(1e-10);
   std::vector<double> values ;
@@ -61,6 +82,7 @@ BOOST_AUTO_TEST_CASE(testQuantileStats2){
   //Test Five numbers
   std::vector<double> quantiles;
   ralab::stats::fivenum(values,quantiles);
+
   std::vector<double> probs;
   probs.clear();
   probs.push_back(1.0);
@@ -91,7 +113,7 @@ BOOST_AUTO_TEST_CASE(testQuantileStats2){
   ref.push_back(18.5);
   ref.push_back(20.00);
 
-  ralab::stats::quantile(values, probs, quantiles);
+  ralab::stats::quantileFromVec(values, probs, quantiles);
 
   BOOST_CHECK(std::equal(ref.begin(), ref.end(), quantiles.begin(), ralab::base::resample::DaCompFunctor<double>(0.01)) );
   //Test Range
@@ -120,7 +142,7 @@ BOOST_AUTO_TEST_CASE( quantileStats){
   probs.push_back(0.9);
   probs.push_back(1);
   std::vector<double> quantiles;
-  ralab::stats::quantile(values, probs, quantiles);
+  ralab::stats::quantileFromVec(values, probs, quantiles);
   BOOST_CHECK(std::equal(probs.begin(), probs.end(), quantiles.begin(), ralab::base::resample::DaCompFunctor<double>(epsilon) ));
 
   //Test Five numbers
