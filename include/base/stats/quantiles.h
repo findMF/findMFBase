@@ -8,8 +8,11 @@
 #define QUANTILES_H
 
 //#include "utilities/stats.h"
+#include <vector>
 
 #include "base/base/base.h"
+#include <algorithm>
+
 
 namespace ralab
 {
@@ -84,8 +87,8 @@ namespace ralab
     ///
     /// Same as R's qunatile with type=2
     template<typename TReal>
-    void quantile(
-        std::vector<TReal> values, //!<[in] values - requires to be sorted.
+    void quantileFromVec(
+        std::vector<TReal> values, //!<[in] valuBes - requires to be sorted.
         const std::vector<TReal> & probs, //!<[in] numeric vector of probabilities with values in [0,1].
         std::vector<TReal> & result //!<[out] Inverse of empirical distribution function.
         )
@@ -148,7 +151,7 @@ summary (minimum, lower-hinge, median, upper-hinge, maximum) for the input data.
       probs.push_back(.5);
       probs.push_back(.75);
       probs.push_back(1);
-      quantile(values, probs, fivenum);
+      quantileFromVec(values, probs, fivenum);
     }
 
 
