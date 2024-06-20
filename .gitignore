@@ -15,3 +15,5 @@ memthr
 core
 *.pdf
 .idea
+CMakeCache.txt
+DartConfiguration.tcl

@@ -8,7 +8,7 @@
 #include <cmath>
 #include <boost/assert.hpp>
 #include <boost/range/algorithm_ext.hpp>
-#include <boost/bind.hpp>
+#include <functional>
 #include <algorithm>
 
 #include <base/base/diff.h>
@@ -44,7 +44,7 @@ namespace ralab
           //square the sum
           // square root averages
 
-          std::transform(summ_.begin(),summ_.end(),summ_.begin(), boost::bind<double>(sqrt,_1));
+          std::transform(summ_.begin(),summ_.end(),summ_.begin(), std::bind(static_cast<double(*)(double)>(std::sqrt), std::placeholders::_1));
           
 		  // compute diff/averages
           std::transform(diff_.begin(),diff_.end(),summ_.begin(),am_.begin(),std::divides<double>());
